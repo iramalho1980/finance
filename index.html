@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle Financeiro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -61,691 +61,495 @@
 
         .card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
+            border-radius: 15px;
             padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-10px);
         }
 
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #4ade80, #22c55e);
-            border-radius: 16px;
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #4ade80;
+        }
+
+        .card p {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        /* Transactions */
+        .transactions {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin-bottom: 3rem;
+        }
+
+        .transactions h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #4ade80;
+            text-align: center;
+        }
+
+        .transaction-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .card h3 {
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
+        .transaction-item:last-child {
+            border-bottom: none;
         }
 
-        .card .value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
+        .transaction-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
         }
 
-        .card .change {
+        .transaction-info p {
             font-size: 0.9rem;
             opacity: 0.7;
         }
 
-        /* Chart Container */
-        .chart-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+        .transaction-amount {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .transaction-amount.income {
+            color: #4ade80;
+        }
+
+        .transaction-amount.expense {
+            color: #ef4444;
+        }
+
+        /* Forms */
+        .form-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             margin-bottom: 3rem;
         }
 
-        .chart-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chart-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        }
-
-        .chart-container h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
+        .form-section h2 {
+            font-size: 2rem;
             margin-bottom: 1.5rem;
+            color: #4ade80;
             text-align: center;
-        }
-
-        .chart-wrapper {
-            position: relative;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Transaction Form */
-        .transaction-form {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .transaction-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        }
-
-        .transaction-form h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
         }
 
         .form-group {
-            position: relative;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
         }
 
-        .form-group input,
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="date"],
         .form-group select {
             width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.05);
             color: #ffffff;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            outline: none;
+            transition: border-color 0.3s ease;
         }
 
-        .form-group input:focus,
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus,
+        .form-group input[type="date"]:focus,
         .form-group select:focus {
-            outline: none;
             border-color: #4ade80;
-            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1);
-            background: rgba(255, 255, 255, 0.1);
         }
 
         .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .btn {
-            background: linear-gradient(135deg, #4ade80, #22c55e);
-            color: white;
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            color: #ffffff;
+            padding: 0.9rem 2rem;
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(74, 222, 128, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
         }
 
-        .btn-full {
-            width: 100%;
-            justify-content: center;
+        .btn-secondary {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            box-shadow: 0 4px 15px rgba(75, 85, 99, 0.4);
         }
 
-        /* Transaction List */
-        .transaction-list {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 24px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
+        .btn-secondary:hover {
+            box-shadow: 0 6px 20px rgba(75, 85, 99, 0.6);
         }
 
-        .transaction-list::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        }
-
-        .transaction-list h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
+        /* Footer */
+        .footer {
             text-align: center;
+            padding: 2rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
         }
 
-        .transaction-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-        }
-
-        .transaction-table th,
-        .transaction-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .transaction-table th {
-            background: rgba(255, 255, 255, 0.05);
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .transaction-table tr:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .transaction-table .type.receita {
-            color: #4ade80;
-            font-weight: 600;
-        }
-
-        .transaction-table .type.despesa {
-            color: #f87171;
-            font-weight: 600;
-        }
-
-        .actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            font-size: 0.875rem;
-            border-radius: 8px;
-        }
-
-        .btn-edit {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        }
-
-        .btn-delete {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-
-        .btn-edit:hover {
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-delete:hover {
-            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
-        }
-
-        /* Responsive Design */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .chart-section {
-                grid-template-columns: 1fr;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
             .dashboard {
                 grid-template-columns: 1fr;
             }
-        }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+            .header h1 {
+                font-size: 2.5rem;
+            }
 
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
+            .header p {
+                font-size: 1rem;
+            }
 
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-        }
+            .card p {
+                font-size: 2rem;
+            }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
+            .transactions h2,
+            .form-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header class="header">
             <h1>Controle Financeiro</h1>
-            <p>Gerencie suas finanças de forma inteligente e moderna</p>
-        </div>
+            <p>Gerencie suas finanças pessoais de forma eficiente.</p>
+        </header>
 
-        <div class="dashboard">
+        <section class="dashboard">
             <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-arrow-up"></i>
-                </div>
-                <h3>Total Receitas</h3>
-                <div class="value" id="totalReceitas">R$ 0,00</div>
-                <div class="change">Este mês</div>
+                <h2>Saldo Total</h2>
+                <p id="totalBalance">R$ 0,00</p>
             </div>
-
             <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-arrow-down"></i>
-                </div>
-                <h3>Total Despesas</h3>
-                <div class="value" id="totalDespesas">R$ 0,00</div>
-                <div class="change">Este mês</div>
+                <h2>Receitas</h2>
+                <p id="totalIncome">R$ 0,00</p>
             </div>
-
             <div class="card">
-                <div class="card-icon">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <h3>Saldo Atual</h3>
-                <div class="value" id="saldoAtual">R$ 0,00</div>
-                <div class="change">Disponível</div>
+                <h2>Despesas</h2>
+                <p id="totalExpense">R$ 0,00</p>
             </div>
-        </div>
+        </section>
 
-        <div class="chart-section">
+        <section class="transactions">
+            <h2>Transações Recentes</h2>
             <div class="chart-container">
-                <h2>Resumo Financeiro</h2>
-                <div class="chart-wrapper">
-                    <canvas id="financialChart"></canvas>
-                </div>
+                <canvas id="transactionsChart"></canvas>
             </div>
-
-            <div class="chart-container">
-                <h2>Tendência Mensal</h2>
-                <div class="chart-wrapper">
-                    <canvas id="trendChart"></canvas>
-                </div>
+            <div id="transactionList">
+                <!-- Transaction items will be dynamically added here -->
             </div>
-        </div>
+        </section>
 
-        <div class="transaction-form">
-            <h2>Nova Transação</h2>
+        <section class="form-section">
+            <h2>Adicionar Nova Transação</h2>
             <form id="transactionForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="description">Descrição</label>
-                        <input type="text" id="description" placeholder="Ex: Salário, Aluguel..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="amount">Valor</label>
-                        <input type="number" id="amount" step="0.01" placeholder="0,00" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="type">Tipo</label>
-                        <select id="type" required>
-                            <option value="">Selecione o tipo</option>
-                            <option value="receita">Receita</option>
-                            <option value="despesa">Despesa</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Data</label>
-                        <input type="date" id="date" required>
-                    </div>
+                <div class="form-group">
+                    <label for="description">Descrição</label>
+                    <input type="text" id="description" placeholder="Ex: Salário, Aluguel, Compras" required>
                 </div>
-                <button type="submit" class="btn btn-full">
-                    <i class="fas fa-plus"></i>
-                    Adicionar Transação
-                </button>
+                <div class="form-group">
+                    <label for="amount">Valor</label>
+                    <input type="number" id="amount" placeholder="Ex: 1500.00" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Tipo</label>
+                    <select id="type" required>
+                        <option value="income">Receita</option>
+                        <option value="expense">Despesa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Data</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Adicionar Transação</button>
+                    <button type="button" class="btn btn-secondary" id="generatePdf">Gerar Relatório PDF</button>
+                    <button type="button" class="btn btn-secondary" id="saveToGithub">Salvar</button>
+                </div>
             </form>
-        </div>
-
-        <div class="transaction-list">
-            <h2>Extrato de Transações</h2>
-            <table class="transaction-table">
-                <thead>
-                    <tr>
-                        <th>Descrição</th>
-                        <th>Valor</th>
-                        <th>Tipo</th>
-                        <th>Data</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="transactionTableBody">
-                </tbody>
-            </table>
-            <button class="btn btn-full" onclick="printTransactions()">
-                <i class="fas fa-print"></i>
-                Imprimir Extrato
-            </button>
-        </div>
+        </section>
     </div>
 
+    <footer class="footer">
+        <p>&copy; 2023 Controle Financeiro. Todos os direitos reservados.</p>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const transactionForm = document.getElementById('transactionForm');
-            const transactionTableBody = document.getElementById('transactionTableBody');
-            const totalReceitasElement = document.getElementById('totalReceitas');
-            const totalDespesasElement = document.getElementById('totalDespesas');
-            const saldoAtualElement = document.getElementById('saldoAtual');
-            const financialChartCanvas = document.getElementById('financialChart');
-            const trendChartCanvas = document.getElementById('trendChart');
-            
-            let financialChart;
-            let trendChart;
-            let transactions = [];
+        // Sample Data (for demonstration purposes)
+        let transactions = [];
 
-            // Set today's date as default
-            document.getElementById('date').valueAsDate = new Date();
+        // DOM Elements
+        const totalBalanceEl = document.getElementById('totalBalance');
+        const totalIncomeEl = document.getElementById('totalIncome');
+        const totalExpenseEl = document.getElementById('totalExpense');
+        const transactionListEl = document.getElementById('transactionList');
+        const transactionForm = document.getElementById('transactionForm');
+        const generatePdfBtn = document.getElementById('generatePdf');
+        const saveToGithubBtn = document.getElementById('saveToGithub');
 
-            // Load transactions from localStorage
-            if (localStorage.getItem('transactions')) {
-                transactions = JSON.parse(localStorage.getItem('transactions'));
-            }
+        // Chart.js Setup
+        const ctx = document.getElementById('transactionsChart').getContext('2d');
+        let transactionsChart;
 
-            function saveTransactions() {
-                localStorage.setItem('transactions', JSON.stringify(transactions));
-            }
+        // Functions
+        function updateSummary() {
+            const totalIncome = transactions
+                .filter(t => t.type === 'income')
+                .reduce((sum, t) => sum + t.amount, 0);
+            const totalExpense = transactions
+                .filter(t => t.type === 'expense')
+                .reduce((sum, t) => sum + t.amount, 0);
+            const totalBalance = totalIncome - totalExpense;
 
-            function renderTransactions() {
-                transactionTableBody.innerHTML = '';
-                let totalReceitas = 0;
-                let totalDespesas = 0;
+            totalBalanceEl.textContent = `R$ ${totalBalance.toFixed(2)}`;
+            totalIncomeEl.textContent = `R$ ${totalIncome.toFixed(2)}`;
+            totalExpenseEl.textContent = `R$ ${totalExpense.toFixed(2)}`;
 
-                transactions.forEach((transaction, index) => {
-                    const row = transactionTableBody.insertRow();
-                    row.innerHTML = `
-                        <td>${transaction.description}</td>
-                        <td class="${transaction.type}">${transaction.amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
-                        <td class="type ${transaction.type}">${transaction.type === 'receita' ? 'Receita' : 'Despesa'}</td>
-                        <td>${new Date(transaction.date).toLocaleDateString('pt-BR')}</td>
-                        <td class="actions">
-                            <button class="btn btn-sm btn-edit" onclick="editTransaction(${index})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn btn-sm btn-delete" onclick="deleteTransaction(${index})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
+            updateChart(totalIncome, totalExpense);
+        }
 
-                    if (transaction.type === 'receita') {
-                        totalReceitas += transaction.amount;
-                    } else {
-                        totalDespesas += transaction.amount;
-                    }
-                });
+        function renderTransactions() {
+            transactionListEl.innerHTML = '';
+            transactions.forEach(t => {
+                const item = document.createElement('div');
+                item.classList.add('transaction-item');
+                item.innerHTML = `
+                    <div class="transaction-info">
+                        <h3>${t.description}</h3>
+                        <p>${new Date(t.date).toLocaleDateString()}</p>
+                    </div>
+                    <div class="transaction-amount ${t.type}">
+                        R$ ${t.amount.toFixed(2)}
+                    </div>
+                `;
+                transactionListEl.appendChild(item);
+            });
+        }
 
-                totalReceitasElement.textContent = totalReceitas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                totalDespesasElement.textContent = totalDespesas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                
-                const saldoAtual = totalReceitas - totalDespesas;
-                saldoAtualElement.textContent = saldoAtual.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                saldoAtualElement.style.color = saldoAtual >= 0 ? '#4ade80' : '#f87171';
+        function addTransaction(e) {
+            e.preventDefault();
 
-                updateCharts(totalReceitas, totalDespesas);
-            }
+            const description = document.getElementById('description').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const type = document.getElementById('type').value;
+            const date = document.getElementById('date').value;
 
-            function addTransaction(event) {
-                event.preventDefault();
-                
-                const description = document.getElementById('description').value;
-                const amount = parseFloat(document.getElementById('amount').value);
-                const type = document.getElementById('type').value;
-                const date = document.getElementById('date').value;
-
-                const newTransaction = { description, amount, type, date };
-                transactions.push(newTransaction);
-                
-                saveTransactions();
-                renderTransactions();
+            if (description && amount && type && date) {
+                transactions.push({ description, amount, type, date });
                 transactionForm.reset();
-                document.getElementById('date').valueAsDate = new Date();
+                updateSummary();
+                renderTransactions();
+            } else {
+                alert('Por favor, preencha todos os campos da transação.');
+            }
+        }
+
+        function updateChart(income, expense) {
+            if (transactionsChart) {
+                transactionsChart.destroy();
             }
 
-            window.editTransaction = (index) => {
-                const transaction = transactions[index];
-                document.getElementById('description').value = transaction.description;
-                document.getElementById('amount').value = transaction.amount;
-                document.getElementById('type').value = transaction.type;
-                document.getElementById('date').value = transaction.date;
-
-                transactions.splice(index, 1);
-                saveTransactions();
-                renderTransactions();
-            };
-
-            window.deleteTransaction = (index) => {
-                if (confirm('Tem certeza que deseja excluir esta transação?')) {
-                    transactions.splice(index, 1);
-                    saveTransactions();
-                    renderTransactions();
-                }
-            };
-
-            function updateCharts(receitas, despesas) {
-                // Financial Donut Chart with separated slices
-                const financialData = {
+            transactionsChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
                     labels: ['Receitas', 'Despesas'],
                     datasets: [{
-                        data: [receitas, despesas],
-                        backgroundColor: ['#4ade80', '#f87171'],
-                        borderWidth: 4,
-                        borderColor: 'rgba(255, 255, 255, 0.1)',
-                        cutout: '75%',
-                        spacing: 12,
-                        borderRadius: 8
+                        data: [income, expense],
+                        backgroundColor: ['#22c55e', '#ef4444'],
+                        hoverOffset: 4
                     }]
-                };
-
-                const financialConfig = {
-                    type: 'doughnut',
-                    data: financialData,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    color: '#ffffff',
-                                    padding: 20,
-                                    usePointStyle: true,
-                                    font: {
-                                        size: 14,
-                                        weight: '500'
-                                    }
-                                }
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff'
                             }
                         },
-                        elements: {
-                            arc: {
-                                borderRadius: 8
-                            }
-                        }
-                    }
-                };
-
-                if (financialChart) {
-                    financialChart.destroy();
-                }
-                financialChart = new Chart(financialChartCanvas, financialConfig);
-
-                // Trend Chart
-                const trendData = {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
-                    datasets: [{
-                        label: 'Receitas',
-                        data: [receitas * 0.8, receitas * 0.9, receitas, receitas * 1.1, receitas * 0.95, receitas],
-                        borderColor: '#4ade80',
-                        backgroundColor: 'rgba(74, 222, 128, 0.1)',
-                        tension: 0.4,
-                        fill: true,
-                        borderWidth: 3
-                    }, {
-                        label: 'Despesas',
-                        data: [despesas * 0.7, despesas * 0.85, despesas * 0.9, despesas, despesas * 0.8, despesas],
-                        borderColor: '#f87171',
-                        backgroundColor: 'rgba(248, 113, 113, 0.1)',
-                        tension: 0.4,
-                        fill: true,
-                        borderWidth: 3
-                    }]
-                };
-
-                const trendConfig = {
-                    type: 'line',
-                    data: trendData,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: {
-                                    color: '#ffffff',
-                                    padding: 20,
-                                    usePointStyle: true,
-                                    font: {
-                                        size: 14,
-                                        weight: '500'
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
                                     }
-                                }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                ticks: {
-                                    color: '#ffffff'
-                                },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                }
-                            },
-                            y: {
-                                ticks: {
-                                    color: '#ffffff'
-                                },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
+                                    if (context.parsed !== null) {
+                                        label += `R$ ${context.parsed.toFixed(2)}`;
+                                    }
+                                    return label;
                                 }
                             }
                         }
                     }
+                }
+            });
+        }
+
+        function generatePdfReport() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(18);
+            doc.text('Relatório Financeiro', 14, 22);
+
+            doc.setFontSize(12);
+            doc.text(`Data do Relatório: ${new Date().toLocaleDateString()}`, 14, 30);
+
+            const tableColumn = ["Descrição", "Tipo", "Valor", "Data"];
+            const tableRows = [];
+
+            transactions.forEach(t => {
+                const transactionData = [
+                    t.description,
+                    t.type === 'income' ? 'Receita' : 'Despesa',
+                    `R$ ${t.amount.toFixed(2)}`,
+                    new Date(t.date).toLocaleDateString()
+                ];
+                tableRows.push(transactionData);
+            });
+
+            doc.autoTable(tableColumn, tableRows, {
+                startY: 40,
+                headStyles: { fillColor: [34, 197, 94] },
+                styles: { fontSize: 10, cellPadding: 3, textColor: [0, 0, 0] },
+                bodyStyles: { textColor: [0, 0, 0] },
+                alternateRowStyles: { fillColor: [240, 240, 240] }
+            });
+
+            doc.save('relatorio_financeiro.pdf');
+        }
+
+        async function saveToGithub() {
+            try {
+                // Salvar dados no localStorage para persistência
+                const currentState = {
+                    transactions: transactions,
+                    lastSaved: new Date().toISOString()
+                };
+                localStorage.setItem('financeData', JSON.stringify(currentState));
+
+                // Criar conteúdo do arquivo bd.json com os dados atuais
+                const bdJsonContent = {
+                    transactions: transactions,
+                    summary: {
+                        totalIncome: transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0),
+                        totalExpense: transactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0),
+                        totalBalance: transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0) - 
+                                     transactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0)
+                    },
+                    lastUpdated: new Date().toISOString()
                 };
 
-                if (trendChart) {
-                    trendChart.destroy();
-                }
-                trendChart = new Chart(trendChartCanvas, trendConfig);
+                // Para salvar no GitHub, seria necessário um token de acesso pessoal
+                // Por enquanto, vamos simular o salvamento e mostrar uma mensagem
+                alert(`Estado atual salvo localmente!\n\nDados salvos:\n- ${transactions.length} transações\n- Última atualização: ${new Date().toLocaleString()}\n\nPara salvar no GitHub, configure um token de acesso pessoal.`);
+                
+                // Opcional: fazer download do arquivo bd.json
+                const blob = new Blob([JSON.stringify(bdJsonContent, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'bd.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+            } catch (error) {
+                console.error('Erro ao salvar:', error);
+                alert('Erro ao salvar os dados. Verifique o console para mais detalhes.');
             }
+        }
 
-            window.printTransactions = () => {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                doc.setFontSize(20);
-                doc.text('Extrato de Transações', 20, 20);
-                
-                doc.autoTable({
-                    html: '.transaction-table',
-                    startY: 30,
-                    headStyles: { 
-                        fillColor: [74, 222, 128],
-                        textColor: [255, 255, 255]
-                    },
-                    alternateRowStyles: { 
-                        fillColor: [245, 245, 245] 
-                    },
-                    styles: { 
-                        textColor: [0, 0, 0] 
-                    }
-                });
-                
-                doc.save('extrato_transacoes.pdf');
-            };
+        // Event Listeners
+        transactionForm.addEventListener('submit', addTransaction);
+        generatePdfBtn.addEventListener('click', generatePdfReport);
+        saveToGithubBtn.addEventListener('click', saveToGithub);
 
-            transactionForm.addEventListener('submit', addTransaction);
-            renderTransactions();
-        });
+        // Initial Load
+        function loadSavedData() {
+            try {
+                const savedData = localStorage.getItem('financeData');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    transactions = data.transactions || [];
+                    console.log('Dados carregados do localStorage:', data);
+                }
+            } catch (error) {
+                console.error('Erro ao carregar dados salvos:', error);
+            }
+        }
+
+        loadSavedData();
+        updateSummary();
+        renderTransactions();
     </script>
 </body>
 </html>
