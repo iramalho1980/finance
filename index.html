@@ -34,11 +34,12 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
         .header h1 {
@@ -53,7 +54,9 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 30px;
-             .card {
+        }
+
+        .card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px) saturate(180%);
             -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -64,16 +67,14 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }       .form-group {
+        .card h2 {
+            color: #4a90e2;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-group {
             margin-bottom: 15px;
         }
 
@@ -81,20 +82,21 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
+            color: #ffffff;
         }
 
         .form-group input[type="text"],
         .form-group input[type="number"],
         .form-group input[type="date"],
         .form-group select {
-            width: calc(100% - 20px);
-            padding: 10px;
+            width: 100%;
+            padding: 12px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
             font-size: 1rem;
-            transition: border-color 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
         }
 
         .form-group input[type="text"]:focus,
@@ -102,13 +104,39 @@
         .form-group input[type="date"]:focus,
         .form-group select:focus {
             border-color: #4a90e2;
+            background: rgba(74, 144, 226, 0.15);
             outline: none;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #2c2c2c;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        .form-group select option:checked,
+        .form-group select option:hover {
+            background: #4a90e2 !important;
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        .form-group select option:selected {
+            background: linear-gradient(135deg, #4a90e2, #357ABD) !important;
+            color: #ffffff !important;
+            font-weight: bold;
         }
 
         .button-group {
             display: flex;
             gap: 10px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         .button {
@@ -118,7 +146,9 @@
             cursor: pointer;
             font-size: 1rem;
             font-weight: 700;
-            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            flex: 1;
+            min-width: 120px;
         }
 
         .button.primary {
@@ -129,6 +159,7 @@
         .button.primary:hover {
             background-color: #357ABD;
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
         }
 
         .button.secondary {
@@ -139,6 +170,7 @@
         .button.secondary:hover {
             background-color: #5a6268;
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
         }
 
         .chart-container {
@@ -208,10 +240,12 @@
             gap: 10px;
             margin-top: 20px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .export-buttons .button {
             background-color: #28a745;
+            flex: none;
         }
 
         .export-buttons .button:hover {
@@ -223,13 +257,21 @@
         }
 
         .search-group input {
-            width: calc(100% - 20px);
-            padding: 10px;
+            width: 100%;
+            padding: 12px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
             font-size: 1rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-group input:focus {
+            border-color: #4a90e2;
+            background: rgba(74, 144, 226, 0.15);
+            outline: none;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
         }
 
         .sortable-handle {
@@ -245,6 +287,8 @@
         .data-table td .action-buttons .button {
             padding: 8px 12px;
             font-size: 0.9rem;
+            flex: none;
+            min-width: auto;
         }
 
         .data-table td .action-buttons .button.edit {
@@ -265,6 +309,15 @@
             background-color: #c82333;
         }
 
+        /* Placeholder styling for better visibility */
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
         @media (max-width: 768px) {
             .main-grid {
                 grid-template-columns: 1fr;
@@ -272,6 +325,14 @@
 
             .total-card {
                 grid-column: span 1;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .export-buttons {
+                flex-direction: column;
             }
         }
     </style>
@@ -366,54 +427,20 @@
         const exportarPdfBtn = document.getElementById('exportarPdf');
         const exportarCsvBtn = document.getElementById('exportarCsv');
 
-        // Configurações do GitHub
-        const GITHUB_TOKEN = prompt('Digite seu token de acesso pessoal do GitHub:') || '';
-        const GITHUB_OWNER = 'iramalho1980';
-        const GITHUB_REPO = 'finance';
-        const GITHUB_FILE_PATH = 'bd.json';
-
         let transacoes = [];
         let resumoChart;
+        let editandoIndex = -1;
 
-        // Função para carregar transações do GitHub
-        async function carregarTransacoes() {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`, {
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
+        // Definir data atual como padrão
+        dataInput.value = new Date().toISOString().split('T')[0];
 
-                if (response.ok) {
-                    const data = await response.json();
-                    const content = atob(data.content);
-                    transacoes = JSON.parse(content);
-                    renderizarTransacoes();
-                    atualizarResumoFinanceiro();
-                } else if (response.status === 404) {
-                    // Arquivo não existe ainda, criar vazio
-                    transacoes = [];
-                    await salvarTransacoesGitHub();
-                } else {
-                    console.error('Erro ao carregar dados do GitHub:', response.statusText);
-                    // Fallback para localStorage
-                    const transacoesSalvas = localStorage.getItem('transacoes');
-                    if (transacoesSalvas) {
-                        transacoes = JSON.parse(transacoesSalvas);
-                        renderizarTransacoes();
-                        atualizarResumoFinanceiro();
-                    }
-                }
-            } catch (error) {
-                console.error('Erro ao carregar dados do GitHub:', error);
-                // Fallback para localStorage
-                const transacoesSalvas = localStorage.getItem('transacoes');
-                if (transacoesSalvas) {
-                    transacoes = JSON.parse(transacoesSalvas);
-                    renderizarTransacoes();
-                    atualizarResumoFinanceiro();
-                }
+        // Função para carregar transações do localStorage
+        function carregarTransacoes() {
+            const transacoesSalvas = localStorage.getItem('transacoes');
+            if (transacoesSalvas) {
+                transacoes = JSON.parse(transacoesSalvas);
+                renderizarTransacoes();
+                atualizarResumoFinanceiro();
             }
         }
 
@@ -422,159 +449,53 @@
             localStorage.setItem('transacoes', JSON.stringify(transacoes));
         }
 
-        // Função para salvar transações no GitHub
-        async function salvarTransacoesGitHub() {
-            try {
-                // Primeiro, obter o SHA do arquivo atual (se existir)
-                let sha = null;
-                try {
-                    const getResponse = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`, {
-                        headers: {
-                            'Authorization': `token ${GITHUB_TOKEN}`,
-                            'Accept': 'application/vnd.github.v3+json'
-                        }
-                    });
-                    if (getResponse.ok) {
-                        const getData = await getResponse.json();
-                        sha = getData.sha;
-                    }
-                } catch (error) {
-                    console.log('Arquivo não existe ainda, será criado');
-                }
-
-                // Preparar o conteúdo
-                const content = btoa(JSON.stringify(transacoes, null, 2));
-                
-                // Salvar no GitHub
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: 'Atualizar dados financeiros',
-                        content: content,
-                        sha: sha
-                    })
-                });
-
-                if (response.ok) {
-                    alert('Dados salvos no GitHub com sucesso!');
-                    // Também salvar localmente como backup
-                    salvarTransacoes();
-                } else {
-                    const errorData = await response.json();
-                    console.error('Erro ao salvar no GitHub:', errorData);
-                    alert('Erro ao salvar no GitHub. Dados salvos localmente como backup.');
-                    salvarTransacoes();
-                }
-            } catch (error) {
-                console.error('Erro ao salvar no GitHub:', error);
-                alert('Erro ao salvar no GitHub. Dados salvos localmente como backup.');
-                salvarTransacoes();
-            }
-        }
-
         // Função para adicionar transação
-        adicionarTransacaoBtn.addEventListener('click', () => {
+        function adicionarTransacao() {
             const descricao = descricaoInput.value.trim();
             const valor = parseFloat(valorInput.value);
             const tipo = tipoInput.value;
             const data = dataInput.value;
 
-            if (descricao && !isNaN(valor) && data) {
-                const novaTransacao = { descricao, valor, tipo, data };
-                transacoes.push(novaTransacao);
-                salvarTransacoes();
-                renderizarTransacoes();
-                atualizarResumoFinanceiro();
-                limparFormulario();
-            } else {
-                alert('Por favor, preencha todos os campos corretamente.');
+            if (!descricao || !valor || !data) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
             }
-        });
+
+            if (valor <= 0) {
+                alert('O valor deve ser maior que zero.');
+                return;
+            }
+
+            const transacao = {
+                id: Date.now(),
+                descricao,
+                valor,
+                tipo,
+                data
+            };
+
+            if (editandoIndex >= 0) {
+                transacoes[editandoIndex] = transacao;
+                editandoIndex = -1;
+                adicionarTransacaoBtn.textContent = 'Adicionar Transação';
+            } else {
+                transacoes.push(transacao);
+            }
+
+            salvarTransacoes();
+            renderizarTransacoes();
+            atualizarResumoFinanceiro();
+            limparFormulario();
+        }
 
         // Função para limpar formulário
-        limparFormularioBtn.addEventListener('click', limparFormulario);
-
-        // Função para salvar no GitHub
-        salvarGitHubBtn.addEventListener('click', salvarTransacoesGitHub);
-
         function limparFormulario() {
             descricaoInput.value = '';
             valorInput.value = '';
             tipoInput.value = 'receita';
-            dataInput.value = '';
-        }
-
-        // Função para renderizar transações na tabela
-        function renderizarTransacoes() {
-            tabelaTransacoesBody.innerHTML = '';
-            const filtro = filtroDescricaoInput.value.toLowerCase();
-
-            const transacoesFiltradas = transacoes.filter(transacao =>
-                transacao.descricao.toLowerCase().includes(filtro)
-            );
-
-            transacoesFiltradas.forEach((transacao, index) => {
-                const row = tabelaTransacoesBody.insertRow();
-                row.setAttribute('data-id', index); // Adiciona um ID para facilitar a ordenação
-
-                const handleCell = row.insertCell(0);
-                handleCell.innerHTML = '<i class="fas fa-grip-vertical sortable-handle"></i>';
-
-                const descricaoCell = row.insertCell(1);
-                descricaoCell.textContent = transacao.descricao;
-
-                const valorCell = row.insertCell(2);
-                valorCell.textContent = `R$ ${transacao.valor.toFixed(2)}`;
-                valorCell.style.color = transacao.tipo === 'receita' ? '#28a745' : '#dc3545';
-
-                const tipoCell = row.insertCell(3);
-                tipoCell.textContent = transacao.tipo === 'receita' ? 'Receita' : 'Despesa';
-
-                const dataCell = row.insertCell(4);
-                dataCell.textContent = transacao.data;
-
-                const acoesCell = row.insertCell(5);
-                acoesCell.innerHTML = `
-                    <div class="action-buttons">
-                        <button class="button edit" data-index="${index}">Editar</button>
-                        <button class="button delete" data-index="${index}">Excluir</button>
-                    </div>
-                `;
-            });
-
-            // Inicializa o SortableJS
-            new Sortable(tabelaTransacoesBody, {
-                handle: '.sortable-handle',
-                animation: 150,
-                onEnd: function (evt) {
-                    const oldIndex = evt.oldIndex;
-                    const newIndex = evt.newIndex;
-                    const [removed] = transacoes.splice(oldIndex, 1);
-                    transacoes.splice(newIndex, 0, removed);
-                    salvarTransacoes();
-                    renderizarTransacoes(); // Renderiza novamente para atualizar os data-id
-                },
-            });
-
-            // Adiciona event listeners para os botões de editar e excluir
-            document.querySelectorAll('.button.edit').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const index = parseInt(e.target.dataset.index);
-                    editarTransacao(index);
-                });
-            });
-
-            document.querySelectorAll('.button.delete').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const index = parseInt(e.target.dataset.index);
-                    excluirTransacao(index);
-                });
-            });
+            dataInput.value = new Date().toISOString().split('T')[0];
+            editandoIndex = -1;
+            adicionarTransacaoBtn.textContent = 'Adicionar Transação';
         }
 
         // Função para editar transação
@@ -584,12 +505,8 @@
             valorInput.value = transacao.valor;
             tipoInput.value = transacao.tipo;
             dataInput.value = transacao.data;
-
-            // Remove a transação da lista para ser adicionada novamente com as edições
-            transacoes.splice(index, 1);
-            salvarTransacoes();
-            renderizarTransacoes();
-            atualizarResumoFinanceiro();
+            editandoIndex = index;
+            adicionarTransacaoBtn.textContent = 'Atualizar Transação';
         }
 
         // Função para excluir transação
@@ -602,87 +519,167 @@
             }
         }
 
-        // Função para atualizar resumo financeiro e gráfico
+        // Função para renderizar transações na tabela
+        function renderizarTransacoes() {
+            const filtro = filtroDescricaoInput.value.toLowerCase();
+            const transacoesFiltradas = transacoes.filter(transacao =>
+                transacao.descricao.toLowerCase().includes(filtro)
+            );
+
+            tabelaTransacoesBody.innerHTML = '';
+
+            transacoesFiltradas.forEach((transacao, index) => {
+                const originalIndex = transacoes.indexOf(transacao);
+                const row = document.createElement('tr');
+                
+                const valorFormatado = transacao.valor.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
+
+                const dataFormatada = new Date(transacao.data + 'T00:00:00').toLocaleDateString('pt-BR');
+
+                row.innerHTML = `
+                    <td><i class="fas fa-grip-vertical sortable-handle"></i></td>
+                    <td>${transacao.descricao}</td>
+                    <td style="color: ${transacao.tipo === 'receita' ? '#28a745' : '#dc3545'}">${valorFormatado}</td>
+                    <td><span style="background: ${transacao.tipo === 'receita' ? '#28a745' : '#dc3545'}; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">${transacao.tipo.toUpperCase()}</span></td>
+                    <td>${dataFormatada}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="button edit" onclick="editarTransacao(${originalIndex})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="button delete" onclick="excluirTransacao(${originalIndex})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+
+                tabelaTransacoesBody.appendChild(row);
+            });
+        }
+
+        // Função para atualizar resumo financeiro
         function atualizarResumoFinanceiro() {
-            const totalReceitas = transacoes
-                .filter(t => t.tipo === 'receita')
-                .reduce((sum, t) => sum + t.valor, 0);
+            const receitas = transacoes.filter(t => t.tipo === 'receita').reduce((sum, t) => sum + t.valor, 0);
+            const despesas = transacoes.filter(t => t.tipo === 'despesa').reduce((sum, t) => sum + t.valor, 0);
+            const saldo = receitas - despesas;
 
-            const totalDespesas = transacoes
-                .filter(t => t.tipo === 'despesa')
-                .reduce((sum, t) => sum + t.valor, 0);
+            saldoTotalElement.textContent = saldo.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
 
-            const saldoTotal = totalReceitas - totalDespesas;
-            saldoTotalElement.textContent = `R$ ${saldoTotal.toFixed(2)}`;
-            saldoTotalElement.style.color = saldoTotal >= 0 ? '#28a745' : '#dc3545';
+            saldoTotalElement.style.color = saldo >= 0 ? '#28a745' : '#dc3545';
 
             // Atualizar gráfico
+            atualizarGrafico(receitas, despesas);
+        }
+
+        // Função para atualizar gráfico
+        function atualizarGrafico(receitas, despesas) {
+            const ctx = document.getElementById('resumoChart').getContext('2d');
+
             if (resumoChart) {
                 resumoChart.destroy();
             }
 
-            const ctx = document.getElementById('resumoChart').getContext('2d');
-                resumoChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Receitas', 'Despesas'],
-                        datasets: [{
-                            data: [totalReceitas, totalDespesas],
-                            backgroundColor: ['#28a745', '#dc3545'],
-                            borderColor: 'rgba(255, 255, 255, 0.5)',
-                            borderWidth: 2,
-                            spacing: 5 // Espaçamento entre as fatias
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        cutout: '70%', // Tamanho do buraco do donut
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'bottom',
-                                labels: {
-                                    color: '#ffffff'
+            resumoChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Receitas', 'Despesas'],
+                    datasets: [{
+                        data: [receitas, despesas],
+                        backgroundColor: ['#28a745', '#dc3545'],
+                        borderColor: ['#ffffff', '#ffffff'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 14
                                 }
                             }
-                        },
-                        animation: {
-                            animateScale: true,
-                            animateRotate: true
                         }
                     }
-                });sPDF();
+                }
+            });
+        }
+
+        // Função para exportar para PDF
+        function exportarPdf() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(20);
+            doc.text('Relatório Financeiro', 20, 20);
+
+            const tableData = transacoes.map(t => [
+                t.descricao,
+                t.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+                t.tipo.toUpperCase(),
+                new Date(t.data + 'T00:00:00').toLocaleDateString('pt-BR')
+            ]);
 
             doc.autoTable({
                 head: [['Descrição', 'Valor', 'Tipo', 'Data']],
-                body: transacoes.map(t => [t.descricao, `R$ ${t.valor.toFixed(2)}`, t.tipo === 'receita' ? 'Receita' : 'Despesa', t.data]),
-                startY: 20,
-                styles: { fillColor: [74, 144, 226] },
-                headStyles: { fillColor: [74, 144, 226] },
-                margin: { top: 10 },
+                body: tableData,
+                startY: 30
             });
 
-            doc.save('extrato_financeiro.pdf');
-        });
+            doc.save('relatorio-financeiro.pdf');
+        }
 
-        // Exportar para CSV
-        exportarCsvBtn.addEventListener('click', () => {
-            let csvContent = "Descrição,Valor,Tipo,Data\n";
-            transacoes.forEach(t => {
-                csvContent += `${t.descricao},${t.valor.toFixed(2)},${t.tipo === 'receita' ? 'Receita' : 'Despesa'},${t.data}\n`;
-            });
+        // Função para exportar para CSV
+        function exportarCsv() {
+            const headers = ['Descrição', 'Valor', 'Tipo', 'Data'];
+            const csvContent = [
+                headers.join(','),
+                ...transacoes.map(t => [
+                    `"${t.descricao}"`,
+                    t.valor,
+                    t.tipo,
+                    t.data
+                ].join(','))
+            ].join('\n');
 
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('download', 'extrato_financeiro.csv');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'relatorio-financeiro.csv');
+            link.style.visibility = 'hidden';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+
+        // Event listeners
+        adicionarTransacaoBtn.addEventListener('click', adicionarTransacao);
+        limparFormularioBtn.addEventListener('click', limparFormulario);
+        filtroDescricaoInput.addEventListener('input', renderizarTransacoes);
+        exportarPdfBtn.addEventListener('click', exportarPdf);
+        exportarCsvBtn.addEventListener('click', exportarCsv);
+
+        // Permitir adicionar transação com Enter
+        [descricaoInput, valorInput, dataInput].forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    adicionarTransacao();
+                }
+            });
         });
 
-        // Carregar transações ao iniciar
+        // Carregar transações ao inicializar
         carregarTransacoes();
     </script>
 </body>
